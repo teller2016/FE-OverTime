@@ -55,6 +55,8 @@ input {
 }
 
 .ot {
+    padding-bottom: 100px;
+
     &__header {
         padding: 20px;
         font-size: 24px;
@@ -210,12 +212,21 @@ input {
                 margin-bottom: 20px;
             }
 
+            &__html {
+                border: 1px solid aqua;
+                margin-top: 50px;
+            }
         }
-        
+
         &__table {
             width: 800px;
             margin: 0 auto;
             text-align: center;
+        }
+
+        .js__result-table {
+            width: 800px;
+            margin: 0 auto;
         }
     }
 }

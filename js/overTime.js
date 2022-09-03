@@ -189,7 +189,7 @@ const resultData = () => {
 
     const addCombinedDataToHtml = (resultData) => {
         // 기존 석식 정보 삭제
-        $('.js__result-table').find('tbody').nextAll().remove();
+        $('.js__result-table').empty();
 
         // 순서
         let number = 0;
@@ -239,6 +239,8 @@ const resultData = () => {
 
         // 템플릿 이용해 HTML에 데이터 추가
         addCombinedDataToHtml(combinedData);
+
+        $('.js__result__html').text($('.js__result-table').html());
     });
 }
 

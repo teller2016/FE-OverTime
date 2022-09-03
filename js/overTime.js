@@ -12,6 +12,14 @@ const workResultData = {
     // }
 }
 
+// 석식 데이터
+const dinnerResultData = {
+    // key: day
+
+    // 'data': '22.01.01'
+    // 'name': '마이쥬스'
+}
+
 // 템플릿에 데이터 넣기
 const addHtmlByTemplate = (wrapperClass, templateClass, data) => {
     const $wrapper = $(wrapperClass);
@@ -81,6 +89,25 @@ const addData = () => {
         });
     }
 
+    const addDinnerDataToHtml = (dinnerData) => {
+        // 기존 석식 정보 삭제
+        $('.js__dinner-table__row').remove();
+
+        // 순서
+        let number = 0;
+        $.each(dinnerData, (day, data) => {
+            number += 1;
+
+            const templateData = {
+                'dinnerNumber': number,
+                'dinnerDate': data['date'],
+                'dinnerName': data['name'],
+            }
+
+            addHtmlByTemplate('.js__dinner-table', '.js__template__dinner', templateData);
+        });
+    }
+
     // 일 추가
     $document.on('click', '.js__add-work', event => {
         if(!event.target) return;
@@ -111,8 +138,37 @@ const addData = () => {
 
         // 템플릿 이용해 HTML에 데이터 추가
         addWorkDataToHtml(workResultData);
-        
-        // show
+    });
+
+    $document.on('click', '.js__add-dinner', event => {
+        if(!event.target) return;
+
+        // 석식 정보 form
+        const $workForm = $('.js__dinner-form');
+
+        const date = $workForm.find("input[name='dinner-date']").val();
+        const name = $workForm.find("input[name='dinner-name']").val();
+
+        // TODO: validation 따로 구분 필요
+        if (!date) {
+            alert('날짜를 선택해주세요.')
+            return;
+        }
+
+        const totalDate = splitDate(date);
+
+        // 새로 입력된 저녁 데이터
+        const newResultData = {
+            'date': totalDate['total'],
+            'name': name,
+        }
+
+        // 저장
+        const day = Number(totalDate['day']);
+        dinnerResultData[day] = newResultData;
+
+        // 템플릿 이용해 HTML에 데이터 추가
+        addDinnerDataToHtml(dinnerResultData);
     });
 
 }

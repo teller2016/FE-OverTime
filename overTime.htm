@@ -88,7 +88,6 @@
             </dl>
         </div>
 
-
         <!-- OT 내역 작성 영역 -->
         <div class="ot__write">
             <!-- WORK -->
@@ -174,29 +173,36 @@
                 <div class="write__result">
                     <h3 class="write__result__title">석식 결과</h3>
 
-                    <table class="result__table">
+                    <table class="result__table js__dinner-table">
                         <colgroup>
                             <col width="100">
                             <col width="200">
                             <col width="160">
                         </colgroup>
-                        
-                        <tr class="result__table__row">
-                            <th class="result__table__head">No.</th>
-                            <th class="result__table__head">일시</th>
-                            <th class="result__table__head">석식대</th>
-                        </tr>
 
-                        <tr class="result__table__row">
-                            <td class="result__table__data">1</td>
-                            <td class="result__table__data">22.08.01</td>
-                            <td class="result__table__data">석식대(마이쥬스)</td>
-                        </tr>
+                        <script class="js__template__dinner" type="text/template">
+                            <tr class="result__table__row js__dinner-table__row">
+                                <td class="result__table__data">{[dinnerNumber]}</td>
+                                <td class="result__table__data">{[dinnerDate]}</td>
+                                <td class="result__table__data">{[dinnerName]}</td>
+                            </tr>
+                        </script>
 
                     </table>
                 </div>
             </section>
+
+            <div class="write__done">
+                <button type="button">통합결과조회</button>
+            </div>
         </div>
+
+        <!-- 전체 데이터 통합 -->
+        <section class="ot__result">
+            <header class="result__header">
+                <h2>결과</h2>
+            </header>
+        </secti>
     </section>
 </body>
 </html>

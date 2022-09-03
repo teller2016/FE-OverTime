@@ -100,6 +100,7 @@ input[type=radio] + span {
 }
 .ot__write {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
 }
@@ -135,6 +136,25 @@ input[type=radio] + span {
 .ot__write .write__result .result__table {
   text-align: center;
 }
+.ot__write .write__done {
+  width: 100%;
+  text-align: center;
+}
+.ot__write .write__done button {
+  width: 280px;
+  height: 40px;
+  font-size: 20px;
+}
+.ot__result {
+  margin: 0 auto;
+  margin-top: 50px;
+  border-top: 2px solid black;
+}
+.ot__result .result__header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .blind {
   font-size: 0;
 }/*# sourceMappingURL=overTime.css.map */

@@ -13,14 +13,14 @@
     </header>
 
     <section class="ot__content">
-        <header class="blind">OT대장 작성영역</header>
+        <h2 class="blind">OT대장 작성영역</h2>
         
         <!-- 기본 설정 옵션 -->
         <div class="ot__default">
             <p class="default__title">기본 설정</p>
 
             <!-- 해당 년,월 설정 -->
-            <dl class="default__list">
+            <!-- <dl class="default__list">
                 <dt class="default__name">
                     년도, 월
                 </dt>
@@ -55,7 +55,7 @@
                         <span class="default__input__name">월</span>
                     </div>
                 </dd>
-            </dl>
+            </dl> -->
 
             <!-- 출근 시간 설정 -->
             <dl class="default__list">
@@ -84,6 +84,110 @@
 
 
         <!-- OT 내역 작성 영역 -->
+        <div class="ot__write">
+            <!-- WORK -->
+            <section class="write__content write__day">
+                <header class="write__header">
+                    <h2 class="write__title">일한 시간</h2>
+                </header>
+
+                <form class="js__work-form">
+                    <div class="write__input">
+                        <label>
+                            <input type="date" name="work-date">
+                        </label>
+    
+                        <select name="work-time">
+                            <option value="18">18:00</option>
+                            <option value="18.5">18:30</option>
+                            <option value="19">19:00</option>
+                            <option value="19.5">19:30</option>
+                            <option value="20">20:00</option>
+                            <option value="20.5">20:30</option>
+                            <option value="21">21:00</option>
+                            <option value="21.5">21:30</option>
+                            <option value="22">22:00</option>
+                            <option value="22.5">22:30</option>
+                            <option value="23">23:00</option>
+                            <option value="23.5">23:30</option>
+                            <option value="24">24:00</option>
+                        </select>
+
+                        <button type="button" class="js__add-work">추가</button>
+                    </div>
+                </form>
+
+                <div class="write__result">
+                    <h3 class="write__result__title">일 결과</h3>
+
+                    <table class="result__table">
+                        <colgroup>
+                            <col width="100">
+                            <col width="200">
+                            <col width="160">
+                        </colgroup>
+                        <tr class="result__table__row">
+                            <th class="result__table__head">No.</th>
+                            <th class="result__table__head">일시</th>
+                            <th class="result__table__head">종료시간</th>
+                        </tr>
+
+                        <tr class="result__table__row">
+                            <td class="result__table__data">1</td>
+                            <td class="result__table__data">22.08.01</td>
+                            <td class="result__table__data">20:00</td>
+                        </tr>
+
+                    </table>
+                </div>
+            </section>
+
+            <!-- DINNER -->
+            <section class="write__content write__dinner">
+                <header class="write__header">
+                    <h2 class="write__title">석식</h2>
+                </header>
+
+                <form class="js__dinner-form">
+                    <div class="write__input">
+                        <label>
+                            <input type="date" name="dinner-date">
+                        </label>
+                        
+                        <label>
+                            <input type="text" name="dinner-name" placeholder="ex.마이쥬스">
+                        </label>
+
+                        <button type="button" class="js__add-dinner">추가</button>
+                    </div>
+                </form>
+
+                <div class="write__result">
+                    <h3 class="write__result__title">석식 결과</h3>
+
+                    <table class="result__table">
+                        <colgroup>
+                            <col width="100">
+                            <col width="200">
+                            <col width="160">
+                        </colgroup>
+                        
+                        <tr class="result__table__row">
+                            <th class="result__table__head">No.</th>
+                            <th class="result__table__head">일시</th>
+                            <th class="result__table__head">석식대</th>
+                        </tr>
+
+                        <tr class="result__table__row">
+                            <td class="result__table__data">1</td>
+                            <td class="result__table__data">22.08.01</td>
+                            <td class="result__table__data">석식대(마이쥬스)</td>
+                        </tr>
+
+                    </table>
+                </div>
+            </section>
+        </div>
     </section>
 </body>
 </html>

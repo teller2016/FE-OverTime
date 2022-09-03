@@ -1,9 +1,26 @@
-dl, dd, input {
+dl, dd, input, h2, h3 {
   margin: 0;
   padding: 0;
 }
 
-select {
+button {
+  min-width: 100px;
+  height: 30px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid gray;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 30px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #eee;
+  border-color: black;
+}
+
+select, input[type=date] {
   min-width: 100px;
   height: 30px;
   padding: 0 8px;
@@ -11,6 +28,14 @@ select {
   border-radius: 8px;
 }
 
+input {
+  max-width: 150px;
+  height: 30px;
+  font-size: 16px;
+}
+input[type=text] {
+  color: blue;
+}
 input[type=radio] {
   width: 20px;
   height: 20px;
@@ -73,7 +98,43 @@ input[type=radio] + span {
   font-size: 16px;
   padding-left: 4px;
 }
-
+.ot__write {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+.ot__write .write__header {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+.ot__write .write__title {
+  font-size: 20px;
+}
+.ot__write .write__content {
+  width: 500px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+.ot__write .write__input {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: 16px;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+.ot__write .write__result {
+  padding: 0 20px 40px;
+}
+.ot__write .write__result__title {
+  font-size: 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid black;
+}
+.ot__write .write__result .result__table {
+  text-align: center;
+}
 .blind {
   font-size: 0;
 }/*# sourceMappingURL=overTime.css.map */

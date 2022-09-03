@@ -1,11 +1,29 @@
 $gray : #eee;
 
-dl, dd, input {
+dl, dd, input, h2, h3 {
     margin: 0;
     padding: 0;
 }
 
-select {
+button {
+    min-width: 100px;
+    height: 30px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid gray;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 30px;
+    vertical-align: middle;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $gray;
+        border-color: black;
+    }
+}
+
+select, input[type="date"] {
     min-width: 100px;
     height: 30px;
     padding: 0 8px;
@@ -13,16 +31,26 @@ select {
     border-radius: 8px;
 }
 
-input[type="radio"] {
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
+input {
+    max-width: 150px;
+    height: 30px;
+    font-size: 16px;
 
-    + span {
-        font-size: 16px;
-        padding-left: 4px;
-        line-height: 20px;
+    &[type="text"] {
+        color: blue;
+    }
+
+    &[type="radio"] {
+        width: 20px;
+        height: 20px;
         vertical-align: middle;
+    
+        + span {
+            font-size: 16px;
+            padding-left: 4px;
+            line-height: 20px;
+            vertical-align: middle;
+        }
     }
 }
 
@@ -40,6 +68,7 @@ input[type="radio"] {
         border: 1px solid red;
     }
 
+    // 기본 설정
     &__default {
         width: 500px;
         margin: 0 auto;
@@ -87,6 +116,71 @@ input[type="radio"] {
                     font-size: 16px;
                     padding-left: 4px;
                 }
+            }
+        }
+    }
+
+    // OT 내역 작성 영역
+    &__write {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        
+        .write {
+            &__header {
+                padding: 20px;
+                border-bottom: 1px solid $gray;
+                text-align: center;
+            }
+            
+            &__title {
+                font-size: 20px;
+            }
+            
+            &__content {
+                width: 500px;
+                border: 1px solid $gray;
+                border-radius: 8px;
+            }
+
+            &__input {
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                gap: 16px;
+                padding: 20px;
+                border-bottom: 1px solid $gray;
+            }
+
+            &__result {
+                padding: 0 20px 40px;
+
+                &__title {
+                    font-size: 18px;
+                    padding-bottom: 8px;
+                    border-bottom: 1px solid black;
+                }
+
+                .result {
+                    &__table {
+                        text-align: center;
+    
+                        &__row {
+    
+                        }
+    
+                        &__data {
+                        }
+                    }
+                }
+            }
+    
+            &__day {
+    
+            }
+    
+            &__dinner {
+    
             }
         }
     }

@@ -11,6 +11,18 @@ select {
   border-radius: 8px;
 }
 
+input[type=radio] {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+input[type=radio] + span {
+  font-size: 16px;
+  padding-left: 4px;
+  line-height: 20px;
+  vertical-align: middle;
+}
+
 .ot__header {
   padding: 20px;
   font-size: 24px;
@@ -25,6 +37,7 @@ select {
 .ot__default {
   width: 500px;
   margin: 0 auto;
+  margin-bottom: 30px;
   border: 1px solid #eee;
 }
 .ot__default .default__title {
@@ -40,7 +53,6 @@ select {
 .ot__default .default__name {
   flex: 0 0 100px;
   padding: 16px;
-  border-right: 1px solid #eee;
   text-align: center;
   font-size: 16px;
 }
@@ -48,6 +60,11 @@ select {
   width: 100%;
   padding: 16px;
   font-size: 0;
+  border-left: 1px solid #eee;
+}
+.ot__default .default__input--radio {
+  display: flex;
+  gap: 20px;
 }
 .ot__default .default__input__wrapper:not(:first-of-type) {
   margin-top: 8px;

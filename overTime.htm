@@ -6,6 +6,12 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="/overTime.css">
+
+    <script
+    src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+    crossorigin="anonymous"></script>
+    <script src="/js/overTime.js"></script>
 </head>
 <body class="ot">
     <header class="ot__header">
@@ -120,23 +126,26 @@
                 <div class="write__result">
                     <h3 class="write__result__title">일 결과</h3>
 
-                    <table class="result__table">
+                    <table class="result__table js__work-table">
                         <colgroup>
                             <col width="100">
                             <col width="200">
                             <col width="160">
                         </colgroup>
+
                         <tr class="result__table__row">
                             <th class="result__table__head">No.</th>
                             <th class="result__table__head">일시</th>
                             <th class="result__table__head">종료시간</th>
                         </tr>
 
-                        <tr class="result__table__row">
-                            <td class="result__table__data">1</td>
-                            <td class="result__table__data">22.08.01</td>
-                            <td class="result__table__data">20:00</td>
-                        </tr>
+                        <script class="js__template__work" type="text/template">
+                            <tr class="result__table__row js__work-table__row">
+                                <td class="result__table__data">{[workNumber]}</td>
+                                <td class="result__table__data">{[workDate]}</td>
+                                <td class="result__table__data">{[workEndTime]}</td>
+                            </tr>
+                        </script>
 
                     </table>
                 </div>

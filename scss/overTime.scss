@@ -1,0 +1,79 @@
+$gray : #eee;
+
+dl, dd, input {
+    margin: 0;
+    padding: 0;
+}
+
+select {
+    min-width: 100px;
+    height: 30px;
+    padding: 0 8px;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+.ot {
+    &__header {
+        padding: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    &__content {
+        width: 1280px;
+        margin: 0 auto;
+        border: 1px solid red;
+    }
+
+    &__default {
+        width: 500px;
+        margin: 0 auto;
+        border: 1px solid $gray;
+
+        .default {
+            &__title {
+                text-align: center;
+                font-weight: bold;
+                font-size: 20px;
+            }
+
+            &__list {
+                display: flex;
+                align-items: center;
+                border-top: 1px solid $gray;
+            }
+    
+            &__name {
+                flex: 0 0 100px;
+                padding: 16px;
+                border-right: 1px solid $gray;
+                text-align: center;
+                font-size: 16px;
+            }
+    
+            &__input {
+                width: 100%;
+                padding: 16px;
+                font-size: 0;
+
+                &__wrapper {
+                    &:not(:first-of-type) {
+                        margin-top: 8px;
+                    }
+                }
+
+                &__name {
+                    font-size: 16px;
+                    padding-left: 4px;
+                }
+            }
+        }
+    }
+}
+
+.blind {
+    font-size: 0;
+}
+

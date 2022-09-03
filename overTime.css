@@ -1,0 +1,62 @@
+dl, dd, input {
+  margin: 0;
+  padding: 0;
+}
+
+select {
+  min-width: 100px;
+  height: 30px;
+  padding: 0 8px;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.ot__header {
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+.ot__content {
+  width: 1280px;
+  margin: 0 auto;
+  border: 1px solid red;
+}
+.ot__default {
+  width: 500px;
+  margin: 0 auto;
+  border: 1px solid #eee;
+}
+.ot__default .default__title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+.ot__default .default__list {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #eee;
+}
+.ot__default .default__name {
+  flex: 0 0 100px;
+  padding: 16px;
+  border-right: 1px solid #eee;
+  text-align: center;
+  font-size: 16px;
+}
+.ot__default .default__input {
+  width: 100%;
+  padding: 16px;
+  font-size: 0;
+}
+.ot__default .default__input__wrapper:not(:first-of-type) {
+  margin-top: 8px;
+}
+.ot__default .default__input__name {
+  font-size: 16px;
+  padding-left: 4px;
+}
+
+.blind {
+  font-size: 0;
+}/*# sourceMappingURL=overTime.css.map */

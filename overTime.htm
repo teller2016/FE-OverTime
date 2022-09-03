@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/overTime.css">
+</head>
+<body class="ot">
+    <header class="ot__header">
+        대충 OT 대장 관리해주는 시스템 이름
+    </header>
+
+    <section class="ot__content">
+        <header class="blind">OT대장 작성영역</header>
+        
+        <!-- 기본 설정 옵션 -->
+        <div class="ot__default">
+            <p class="default__title">기본 설정</p>
+
+            <!-- 해당 년,월 설정 -->
+            <dl class="default__list">
+                <dt class="default__name">
+                    년도, 월
+                </dt>
+
+                <dd class="default__input">
+                    <div class="default__input__wrapper">
+                        <select name="year">
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                        </select>
+                        <span class="default__input__name">년</span>
+                    </div>
+
+                    <div class="default__input__wrapper">
+                        <select name="month">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                        <span class="default__input__name">월</span>
+                    </div>
+                </dd>
+            </dl>
+
+            <!-- 출근 시간 설정 -->
+            <dl class="default__list">
+                <dt class="default__name">
+                    출근시간
+                </dt>
+
+                <dd class="default__input">
+
+                </dd>
+            </dl>
+
+        </div>
+
+
+        <!-- OT 내역 작성 영역 -->
+    </section>
+</body>
+</html>

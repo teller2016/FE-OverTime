@@ -33,20 +33,21 @@ const addHtmlByTemplate = (wrapperClass, templateClass, data) => {
     $wrapper.append(templateString);
 }
 
+// 18.5 => 18:30
+const numberToTime = (numberTime) => {
+
+    // 소수점 아니면
+    if (Math.ceil(numberTime) == numberTime) {
+        return numberTime.toString() + ':00';
+    }
+    else {
+        return Math.floor(numberTime).toString() + ':30';
+    }
+
+}
+
 // 데이터 추가 버튼처리
 const addData = () => {
-    // 18.5 => 18:30
-    const numberToTime = (numberTime) => {
-
-        // 소수점 아니면
-        if (Math.ceil(numberTime) == numberTime) {
-            return numberTime.toString() + ':00';
-        }
-        else {
-            return Math.floor(numberTime).toString() + ':30';
-        }
-    
-    }
 
     // 날짜 정보 생성(쪼개기)
     const splitDate = (date) => {
@@ -173,8 +174,77 @@ const addData = () => {
 
 }
 
+// 데이터 종합 버튼 처리
+const resultData = () => {
+    const combinedData = {
+        // key: day;
+        
+        // value
+        // 'date': '',
+        // 'startTime': '',
+        // 'endTime': '',
+        // 'workedTime': '',
+        // 'dinner': ''
+    }
+
+    const addCombinedDataToHtml = (resultData) => {
+        // 기존 석식 정보 삭제
+        $('.js__result-table').find('tbody').nextAll().remove();
+
+        // 순서
+        let number = 0;
+        $.each(resultData, (day, data) => {
+            number += 1;
+
+            const templateData = {
+                'workNumber': number,
+                'workDate': data['date'],
+                'workStartTime': numberToTime(data['startTime']),
+                'workEndTime': numberToTime(data['endTime']),
+                'workedTime': data['endTime'] - data['startTime'],
+                'dinner': data['dinner']? data['dinner'] : '',
+            }
+
+            addHtmlByTemplate('.js__result-table', '.js__template__result', templateData);
+        });
+    }
+
+    $document.on('click', '.js__combine-data', event => {
+        if (!event.target) return;
+
+        // 출근 시간에 따른 야근 시작 시간
+        const workStartTime = Number($("input[name='start-time']:checked").val());
+        
+        $.each(workResultData, (day, workData) => {
+            const data = {
+                'date': workData['date'],
+                'startTime': workStartTime,
+                'endTime': workData['endTime'],
+            }
+
+            combinedData[day] = data;
+        })
+
+        $.each(dinnerResultData, (day, dinnerData) => {
+            if (!combinedData[day]) {
+                alert(`${day}일에는 OT 일정이 없습니다! 한번 확인해주세요!`);
+                return;
+            }
+
+            combinedData[day]['startTime'] = combinedData[day]['startTime'] + 1;
+            combinedData[day]['dinner'] = `석식대<br/>(${dinnerData['name']})`;
+        })
+
+        console.log(combinedData);
+
+        // 템플릿 이용해 HTML에 데이터 추가
+        addCombinedDataToHtml(combinedData);
+    });
+}
+
 const overTimeInit = () => {
     addData();
+    resultData();
 
     document.addEventListener('keydown', function(event) {
         if (event.keyCode === 13) {

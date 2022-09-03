@@ -154,6 +154,11 @@ input[type=radio] + span {
   text-align: center;
   margin-bottom: 20px;
 }
+.ot__result__table {
+  width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
 
 .blind {
   font-size: 0;

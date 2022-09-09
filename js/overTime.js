@@ -1,7 +1,7 @@
 const $document = $(document);
 
 // 일 데이터
-const workResultData = {
+let workResultData = {
     // key: day
 
     // 'data': '22.01.01'
@@ -44,6 +44,21 @@ const numberToTime = (numberTime) => {
         return Math.floor(numberTime).toString() + ':30';
     }
 
+}
+
+// 18:30 => 18.5
+const timeToNumber = (time) => {
+    const timeData = time.split(':');
+
+    const hour = Number(timeData[0]);
+    const minute = timeData[1];
+
+    if (minute === '00') {
+        return hour
+    }
+    else {
+        return hour + 0.5;
+    }
 }
 
 // 데이터 추가 버튼처리
@@ -172,6 +187,85 @@ const addData = () => {
         addDinnerDataToHtml(dinnerResultData);
     });
 
+
+    // 엑셀파일 불러오기
+    $document.on('change', '.js__work__excel', event => {
+        // const date = $workForm.find("input[name='work-date']").val();
+        // const time = Number($workForm.find("select[name='work-time']").val());
+
+        const filterExcelData = data => {
+
+            const dayTimeWorkData = {
+                // key: 일
+
+            }
+    
+            // 각 일 마지막 근무 시간
+            const lastWorkTime = {};
+
+            data.forEach(row => {
+
+                const rawMonthDay = row['일자']; // "8.01(월)"
+                const rawTime = row['시간']; // "09:30-12:30"
+                const rawText = row['일정명']; // "[푸드케어] 정기식단 상세 MO (식단표 레이어)"
+                
+                lastWorkTime[rawMonthDay] = {
+                    'rawTime': rawTime,
+                    'rawText': rawText
+                }
+
+            })
+            
+
+            // 년,월,일,총 데이터
+            // const dateObject = organizeDate(rawMonthDay);
+
+            $.each(lastWorkTime, (rawDate, data) => {
+
+                // 날짜 데이터 정리
+                // TODO: year 필요
+                const year = '22';
+                const dayMonth = rawDate.slice(0,-3).split('.')
+                const month = dayMonth[0].padStart(2, '0');
+                const day = dayMonth[1];
+
+                const totalDate = [year, month, day].join('.');
+
+
+                // 시간 데이터 정리
+                const endTime = timeToNumber(data['rawTime'].split('-')[1]);
+
+                dayTimeWorkData[Number(day)] = {
+                    'totalDate': totalDate,
+                    'year': year,
+                    'month': month,
+                    'day': day,
+                    'text': data['rawText'],
+                    'endTime': endTime,
+                }
+
+
+            });
+
+            return dayTimeWorkData;
+        }
+
+
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = () => {
+          const data = reader.result;
+          const workBook = XLSX.read(data, { type: 'binary' });
+
+          workBook.SheetNames.forEach(sheetName => {
+            const row = XLSX.utils.sheet_to_json(workBook.Sheets[sheetName]);
+            workResultData = filterExcelData(row);
+          })
+        }
+
+        reader.readAsBinaryString(file);
+    });
 }
 
 // 데이터 종합 버튼 처리
@@ -185,10 +279,11 @@ const resultData = () => {
         // 'endTime': '',
         // 'workedTime': '',
         // 'dinner': ''
+        // 'text'
     }
 
     const addCombinedDataToHtml = (resultData) => {
-        // 기존 석식 정보 삭제
+        // 기존 OT 정보 삭제
         $('.js__result-table').empty();
 
         // 순서
@@ -205,6 +300,9 @@ const resultData = () => {
                 'dinner': data['dinner']? data['dinner'] : '',
             }
 
+            // OT가 아닌 경우 처리
+            if (templateData['workEndTime'] <= templateData['workStartTime']) return;
+
             addHtmlByTemplate('.js__result-table', '.js__template__result', templateData);
         });
     }
@@ -217,9 +315,10 @@ const resultData = () => {
         
         $.each(workResultData, (day, workData) => {
             const data = {
-                'date': workData['date'],
+                'date': workData['totalDate'],
                 'startTime': workStartTime,
                 'endTime': workData['endTime'],
+                'text': workData['text'],
             }
 
             combinedData[day] = data;

@@ -11,6 +11,8 @@
     src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
     crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.5/xlsx.full.min.js"></script>
+
     <script src="/js/overTime.js"></script>
 </head>
 <body class="ot">
@@ -96,7 +98,10 @@
                     <h2 class="write__title">일한 시간</h2>
                 </header>
 
-                <form class="js__work-form">
+                <input type="file" id="csv-file" class="js__work__excel" />
+
+
+                <!-- <form class="js__work-form">
                     <div class="write__input">
                         <label>
                             <input type="date" name="work-date">
@@ -147,7 +152,7 @@
                         </script>
 
                     </table>
-                </div>
+                </div> -->
             </section>
 
             <!-- DINNER -->

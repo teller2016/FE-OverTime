@@ -85,6 +85,7 @@ const addData = () => {
         return resultDate;
     }
 
+    /*
     // WORK 데이터 템플릿 사용해서 HTML에 입력
     const addWorkDataToHtml = (workData) => {
         // 기존 일 정보 삭제
@@ -104,6 +105,7 @@ const addData = () => {
             addHtmlByTemplate('.js__work-table', '.js__template__work', templateData);
         });
     }
+    */
 
     const addDinnerDataToHtml = (dinnerData) => {
         // 기존 석식 정보 삭제
@@ -124,6 +126,7 @@ const addData = () => {
         });
     }
 
+    /*
     // 일 추가
     $document.on('click', '.js__add-work', event => {
         if(!event.target) return;
@@ -155,6 +158,7 @@ const addData = () => {
         // 템플릿 이용해 HTML에 데이터 추가
         addWorkDataToHtml(workResultData);
     });
+    */
 
     $document.on('click', '.js__add-dinner', event => {
         if(!event.target) return;
@@ -223,8 +227,7 @@ const addData = () => {
             $.each(lastWorkTime, (rawDate, data) => {
 
                 // 날짜 데이터 정리
-                // TODO: year 필요
-                const year = '22';
+                const year = $("select[name='year']").val();
                 const dayMonth = rawDate.slice(0,-3).split('.')
                 const month = dayMonth[0].padStart(2, '0');
                 const day = dayMonth[1];
@@ -298,6 +301,7 @@ const resultData = () => {
                 'workEndTime': numberToTime(data['endTime']),
                 'workedTime': data['endTime'] - data['startTime'],
                 'dinner': data['dinner']? data['dinner'] : '',
+                'workText': data['text'],
             }
 
             // OT가 아닌 경우 처리
@@ -312,10 +316,11 @@ const resultData = () => {
 
         // 출근 시간에 따른 야근 시작 시간
         const workStartTime = Number($("input[name='start-time']:checked").val());
+        const year = $("select[name='year']").val();
         
         $.each(workResultData, (day, workData) => {
             const data = {
-                'date': workData['totalDate'],
+                'date': [year, workData['month'], workData['day']].join('.'),
                 'startTime': workStartTime,
                 'endTime': workData['endTime'],
                 'text': workData['text'],

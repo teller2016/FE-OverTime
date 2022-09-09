@@ -17,7 +17,7 @@
 </head>
 <body class="ot">
     <header class="ot__header">
-        대충 OT 대장 관리해주는 시스템 이름
+        대충 OT 대장 작성해주는 시스템 이름
     </header>
 
     <section class="ot__content">
@@ -28,14 +28,14 @@
             <p class="default__title">기본 설정</p>
 
             <!-- 해당 년,월 설정 -->
-            <!-- <dl class="default__list">
+            <dl class="default__list">
                 <dt class="default__name">
-                    년도, 월
+                    년도
                 </dt>
 
                 <dd class="default__input">
                     <div class="default__input__wrapper">
-                        <select name="year">
+                        <select name="year" class="js__year">
                             <option value="22">22</option>
                             <option value="23">23</option>
                             <option value="24">24</option>
@@ -45,7 +45,7 @@
                         <span class="default__input__name">년</span>
                     </div>
 
-                    <div class="default__input__wrapper">
+                    <!-- <div class="default__input__wrapper">
                         <select name="month">
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -61,9 +61,9 @@
                             <option value="12">12</option>
                         </select>
                         <span class="default__input__name">월</span>
-                    </div>
+                    </div> -->
                 </dd>
-            </dl> -->
+            </dl>
 
             <!-- 출근 시간 설정 -->
             <dl class="default__list">
@@ -95,10 +95,15 @@
             <!-- WORK -->
             <section class="write__content write__day">
                 <header class="write__header">
-                    <h2 class="write__title">일한 시간</h2>
+                    <h2 class="write__title">일한 시간 (EXCEL 파일 불러오기)</h2>
                 </header>
 
-                <input type="file" id="csv-file" class="js__work__excel" />
+                <div class="write__excel">
+                    <p class="write__excel__guide">해당 월의 일지 excel파일을 불러와 주세요.</p>
+                    <label>
+                        <input type="file" id="csv-file" class="js__work__excel" />
+                    </label>
+                </div>
 
 
                 <!-- <form class="js__work-form">
@@ -226,33 +231,37 @@
                 </tr>
 
                 <script class="js__template__result" type="text/template">
-                    <tr style="height:73px;">  // 높이 변동됨
-                        <td align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;width:34px;height:72px;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;">{[workNumber]}</p></td>
-                        <td align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;width:62px;height:72px;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;">{[workDate]}</p></td>
-                        <td align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;width:60px;height:72px;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;">연장</p></td>
-                        <td align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;width:175px;height:72px;"><p style="font-family:돋움체;font-size:9pt;color:rgb(0, 0, 0);margin-top:0px;margin-bottom:0px;line-height:1.2;">
-                            <span contenteditable="false">
-                                <select name="D1" size="1">
-                                    <option>고객대응</option>
-                                    <option>문서작업</option>
-                                    <option>프로젝지원</option>
-                                    <option selected="selected">프로젝트업무</option>
-                                    <option>벤치마킹</option>
-                                    <option>보고서</option>
-                                    <option>고객요청대기</option>
-                                    <option>상위자지시대기</option>
-                                    <option>외근</option>
-                                    <option>기타</option>
-                                </select>
-                            </span></p></td>
-                        <td align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;width:60px;height:72px;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;">{[workedTime]}</p></td>
-                        <td align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;width:60px;height:72px;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;">{[workStartTime]}</p></td>
-                        <td align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;width:57px;height:72px;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;">{[workEndTime]}</p></td>
-                        <td align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;width:73px;height:72px;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;">{[workedTime]}<br></p></td>
-                        <td align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;width:108px;height:72px;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;"><span style="color:rgb(74, 74, 74);font-family:dotum, 돋움, gulim, 굴림, sans-serif;font-size:12px;"></span><br></p></td>
-                        <td align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;width:72px;height:72px;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;">{[dinner]}<br></p></td>
-                        <td align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;width:60px;height:72px;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;"><br></p></td>
-                        <td align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;width:67px;height:72px;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;"><br></p></td>
+
+                    <tr height="35">
+                        <td width="23" align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;">{[workNumber]}</p></td>
+                        <td width="42" align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;">{[workDate]}</p></td>
+                        <td width="41" align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;">연장</p></td>
+                        <td width="120" align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;">
+                            <p>
+                                <span contenteditable="false">
+                                    <select name="D1" size="1">
+                                        <option>고객대응</option>
+                                        <option>문서작업</option>
+                                        <option>프로젝지원</option>
+                                        <option selected="selected">프로젝트업무</option>
+                                        <option>벤치마킹</option>
+                                        <option>보고서</option>
+                                        <option>고객요청대기</option>
+                                        <option>상위자지시대기</option>
+                                        <option>외근</option>
+                                        <option>기타</option>
+                                    </select>
+                                </span>
+                            </p>
+                        </td>
+                        <td width="41" align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;">{[workedTime]}</p></td>
+                        <td width="41" align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;">{[workStartTime]}</p></td>
+                        <td width="39" align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;">{[workEndTime]}</p></td>
+                        <td width="47" align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;">{[workedTime]}</p></td>
+                        <td width="73" align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;">{[workText]}</p></td>
+                        <td width="45" align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;">{[dinner]}</p></td>
+                        <td width="40" align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;"></p></td>
+                        <td width="43" align="center" style="border:1px solid rgb(0, 0, 0);color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:9pt;"><p style="color:rgb(0, 0, 0);line-height:1.2;font-family:돋움체;font-size:10pt;margin-top:0px;margin-bottom:0px;"></p></td>
                     </tr>
                 </script>
 

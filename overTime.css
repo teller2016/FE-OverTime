@@ -60,7 +60,7 @@ input[type=radio] + span {
 .ot__content {
   width: 1280px;
   margin: 0 auto;
-  border: 1px solid red;
+  border: 1px solid black;
 }
 .ot__default {
   width: 500px;
@@ -147,6 +147,18 @@ input[type=radio] + span {
   width: 280px;
   height: 40px;
   font-size: 20px;
+}
+.ot__write .write__excel {
+  text-align: center;
+}
+.ot__write .write__excel__guide {
+  color: red;
+}
+.ot__write .write__excel label {
+  display: inline-block;
+}
+.ot__write .write__excel input {
+  max-width: none;
 }
 .ot__result {
   margin: 0 auto;

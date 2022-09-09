@@ -344,7 +344,7 @@ const resultData = () => {
 
         $.each(dinnerResultData, (day, dinnerData) => {
             if (!combinedData[day]) {
-                alert(`${day}일에는 OT 일정이 없습니다! 한번 확인해주세요!`);
+                alert(`${dinnerData['date']}에는 OT 일정이 없습니다! 한번 확인해주세요!`);
                 return;
             }
 

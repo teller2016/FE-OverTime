@@ -156,6 +156,7 @@ input[type=radio] + span {
 }
 .ot__write .write__excel label {
   display: inline-block;
+  padding-top: 30px;
 }
 .ot__write .write__excel input {
   max-width: none;
@@ -181,6 +182,12 @@ input[type=radio] + span {
 .ot__result .js__result-table {
   width: 800px;
   margin: 0 auto;
+}
+.ot__total-time {
+  text-align: center;
+  padding: 40px;
+  font-weight: bold;
+  font-size: 30px;
 }
 
 .blind {

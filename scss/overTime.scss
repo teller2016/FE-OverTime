@@ -206,6 +206,7 @@ input {
 
                 label {
                     display: inline-block;
+                    padding-top: 30px;
                 }
                 input {
                     max-width: none;
@@ -243,6 +244,13 @@ input {
             width: 800px;
             margin: 0 auto;
         }
+    }
+
+    &__total-time {
+        text-align: center;
+        padding: 40px;
+        font-weight: bold;
+        font-size: 30px;
     }
 }
 

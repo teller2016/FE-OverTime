@@ -291,24 +291,37 @@ const resultData = () => {
 
         // 순서
         let number = 0;
+
+        // 총 근무시간
+        let totalWorkTime = 0;
         $.each(resultData, (day, data) => {
+
+            
+            const workStartTime = data['startTime'];
+            const workEndTime = data['endTime'];
+            const workedTime = workEndTime - workStartTime;
+            
+            // OT가 아닌 경우 처리
+            if (workedTime <= 0) return;
+            
+
             number += 1;
+            totalWorkTime += workedTime;
 
             const templateData = {
                 'workNumber': number,
                 'workDate': data['date'],
-                'workStartTime': numberToTime(data['startTime']),
-                'workEndTime': numberToTime(data['endTime']),
-                'workedTime': data['endTime'] - data['startTime'],
+                'workStartTime': numberToTime(workStartTime),
+                'workEndTime': numberToTime(workEndTime),
+                'workedTime': workedTime,
                 'dinner': data['dinner']? data['dinner'] : '',
                 'workText': data['text'],
             }
 
-            // OT가 아닌 경우 처리
-            if (templateData['workEndTime'] <= templateData['workStartTime']) return;
-
             addHtmlByTemplate('.js__result-table', '.js__template__result', templateData);
         });
+
+        $('.js__total-time').text(totalWorkTime);
     }
 
     $document.on('click', '.js__combine-data', event => {

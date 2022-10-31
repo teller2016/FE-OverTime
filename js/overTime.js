@@ -33,6 +33,21 @@ const addHtmlByTemplate = (wrapperClass, templateClass, data) => {
     $wrapper.append(templateString);
 }
 
+// 전체 HTML 템플릿에 tr 데이터 넣기 + txt넣기
+const addTotalHtml = (totalWorkTime) => {
+    $('.js__result-html').text('');
+    const tableRowHtml = $('.js__result-table').html();
+    
+    addHtmlByTemplate('.js__result-html', '.js__template__total', 
+    {
+        'tableRow': tableRowHtml,
+        'totalWorkTime': totalWorkTime,
+    }
+    );
+
+    $('.js__total-result__html').text($('.js__result-html').html());
+}
+
 // 18.5 => 18:30
 const numberToTime = (numberTime) => {
 
@@ -321,7 +336,8 @@ const resultData = () => {
             addHtmlByTemplate('.js__result-table', '.js__template__result', templateData);
         });
 
-        $('.js__total-time').text(totalWorkTime);
+        // 전체 테이블 생성용 함수
+        addTotalHtml(totalWorkTime);
     }
 
     $document.on('click', '.js__combine-data', event => {
@@ -361,9 +377,24 @@ const resultData = () => {
     });
 }
 
+const copyTotalResultHtml = () => {
+    $(document).on('click', '.js__copy', event => {
+        const html = $('.js__total-result__html').text();
+        window.navigator.clipboard.writeText(html);
+        alert('HTML이 복사되었습니다! OT대장 HTML에 덮어주세요!');
+    });
+
+    $(document).on('click', '.js__copy-row', event => {
+        const html = $('.js__result__html').text();
+        window.navigator.clipboard.writeText(html);
+        alert('<tr> HTML이 복사되었습니다!');
+    });
+}
+
 const overTimeInit = () => {
     addData();
     resultData();
+    copyTotalResultHtml();
 
     document.addEventListener('keydown', function(event) {
         if (event.keyCode === 13) {

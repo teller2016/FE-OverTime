@@ -78,6 +78,13 @@ const timeToNumber = (time) => {
 
 // 데이터 추가 버튼처리
 const addData = () => {
+    // 시간 정보 유효성 검사
+    const validateEndTimeData = (time) => {
+        let pattern = /^([1-9]|[01][0-9]|2[0-3]):([0-5][0-9])$/;
+        // console.log(time);
+        // console.log(pattern.test(time));
+        return pattern.test(time);
+    }
 
     // 날짜 정보 생성(쪼개기)
     const splitDate = (date) => {
@@ -209,8 +216,6 @@ const addData = () => {
 
     // 엑셀파일 불러오기
     $document.on('change', '.js__work__excel', event => {
-        // const date = $workForm.find("input[name='work-date']").val();
-        // const time = Number($workForm.find("select[name='work-time']").val());
 
         const filterExcelData = data => {
 
@@ -251,7 +256,12 @@ const addData = () => {
 
 
                 // 시간 데이터 정리
-                const endTime = timeToNumber(data['rawTime'].split('-')[1]);
+                // 18:00-19:00에서 19:00 추출
+                const stringEndTime = data['rawTime'].split('-')[1];
+                // 데이터가 시간이 아닌경우 예외처리
+                if (!validateEndTimeData(stringEndTime)) return;
+
+                const endTime = timeToNumber(stringEndTime);
 
                 dayTimeWorkData[Number(day)] = {
                     'totalDate': totalDate,

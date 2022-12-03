@@ -261,6 +261,11 @@ const addData = () => {
                 // 데이터가 시간이 아닌경우 예외처리
                 if (!validateEndTimeData(stringEndTime)) return;
 
+                // TODO: 임시 - 새벽 근무 처리
+                if (stringEndTime == '23:59') {
+                    alert(`${day}일 데이터 및 총합 시간 수정이 필요합니다!\n(새벽근무의 경우 계산을 못했습니다)\n`);
+                }
+
                 const endTime = timeToNumber(stringEndTime);
 
                 dayTimeWorkData[Number(day)] = {

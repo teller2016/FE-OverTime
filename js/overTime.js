@@ -286,7 +286,6 @@ const addData = () => {
 
         const file = event.target.files[0];
         const reader = new FileReader();
-
         reader.onload = () => {
           const data = reader.result;
           const workBook = XLSX.read(data, { type: 'binary' });
@@ -407,22 +406,65 @@ const copyTotalResultHtml = () => {
     });
 }
 
+const initEvent = () => {
+    const $document = $(document);
+
+    document.addEventListener('keydown', function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+        };
+    }, true);
+
+    $document.on('change', '#csv-file', (event) => {
+        const $input = $(event.target);
+        const fileName = $input.val().split('\\').pop();
+        $('#csv-file-label').text(fileName);
+    });
+}
+
+// 엑셀파일 드래그 드롭 기능
+const dragDropEvent = () => {
+    const $window = $(window);
+    const $input = $('.js__work__excel');
+    const $label = $('.js__drag-drop');
+
+    const toggleDragDropActive = (hasEntered) => {
+        $label.toggleClass('itemdrop', hasEntered);
+    }
+
+    $window.on("dragover drop", event => {
+        event.preventDefault();
+    });
+
+    $label
+    .on('dragenter', event => {
+        event.preventDefault();
+        toggleDragDropActive(true);
+    })
+    .on('dragleave', event => {
+        event.preventDefault();
+        toggleDragDropActive(false);
+    })
+    .on('drop', event => {
+        event.preventDefault();
+        const file = event.originalEvent.dataTransfer && event.originalEvent.dataTransfer.files;
+
+        toggleDragDropActive(false);
+        $label.toggleClass('active', true);
+
+        $input[0].files = file;
+        $input.trigger('change');
+    });
+}
+
 const overTimeInit = () => {
     addData();
     resultData();
     copyTotalResultHtml();
 
-    document.addEventListener('keydown', function(event) {
-            if (event.keyCode === 13) {
-                event.preventDefault();
-            };
-        }, true);
-
-    $(document).on('change', '#csv-file', (event) => {
-        const $input = $(event.target);
-        const fileName = $input.val().split('\\').pop();
-        $('#csv-file-label').text(fileName);
-    });
+    initEvent();
+    dragDropEvent();
+    
 }
 
 overTimeInit();

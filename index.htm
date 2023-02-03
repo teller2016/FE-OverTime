@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FE Overtime</title>
 
-    <link rel="stylesheet" href="overTime.css">
+    <link rel="stylesheet" href="./scss/overTime.css">
 
     <script
     src="https://code.jquery.com/jquery-3.6.1.min.js"
@@ -13,7 +13,7 @@
     crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.5/xlsx.full.min.js"></script>
 
-    <script src="./js/overTime.js"></script>
+    <script src="./js/overTime.js" defer></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
@@ -54,11 +54,16 @@
                 <div>
                     <p class="text-danger mb-2">해당 월의 일지 excel파일을 불러와 주세요.</p>
 
-                    <div class="input-group mb-3">
+                    <!-- <div class="input-group mb-3">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input js__work__excel" id="csv-file">
                             <label id="csv-file-label" class="custom-file-label" for="csv-file">파일선택</label>
                         </div>
+                    </div> -->
+
+                    <div class="ot__drag-drop">
+                        <label id="csv-file-label" class="drag-drop__label js__drag-drop" for="csv-file">드래그하거나 클릭해서 업로드</label>
+                        <input type="file" class="drag-drop__input js__work__excel" id="csv-file" accept=".xls,.xlsx">
                     </div>
                 </div>
             </div>
@@ -329,22 +334,21 @@
             <div class="js__result-html"></div>
 
             <div class="result__html">
-                <button type="button" class="btn btn-dark h-auto mb-2 js__copy">전체 HTML 복사</button>
+                <button type="button" class="btn btn-lg btn-dark h-auto mb-2 js__copy">전체 HTML 복사</button>
                 <!-- 전체 HTML text -->
                 <div class="js__total-result__html"></div>
             </div>
 
-
-
-
-
-            <!-- tr html 결과 -->
-            <div class="js__result-table"></div>
-
-            <div class="result__html">
-                <button type="button" class="btn btn-dark h-auto mb-2 js__copy-row">tr HTML 복사</button>
-                <!-- tr HTML text -->
-                <div class="js__result__html"></div>
+            <!-- 숨김처리 -->
+            <div class="hidden">
+                <!-- tr html 결과 -->
+                <div class="js__result-table"></div>
+    
+                <div class="result__html">
+                    <button type="button" class="btn btn-dark h-auto mb-2 js__copy-row">tr HTML 복사</button>
+                    <!-- tr HTML text -->
+                    <div class="js__result__html"></div>
+                </div>
             </div>
         </section>
     </section>

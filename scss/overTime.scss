@@ -7,7 +7,7 @@ dl, dd, input, h2, h3 {
 
 button {
     min-width: 100px;
-    height: 30px;
+    // height: 30px;
     background: white;
     border-radius: 8px;
     border: 1px solid gray;
@@ -220,6 +220,7 @@ input {
     &__result {
         margin: 0 auto;
         margin-top: 50px;
+        padding: 0 20px;
         border-top: 2px solid black;
 
         .result {
@@ -229,8 +230,11 @@ input {
             }
 
             &__html {
-                border: 1px solid aqua;
+                border: 1px solid #e8e8e8;
                 margin-top: 50px;
+                padding: 5px;
+                border-radius: 8px;
+                text-align: center;
             }
         }
 
@@ -252,9 +256,55 @@ input {
         font-weight: bold;
         font-size: 30px;
     }
+
+    &__drag-drop {
+        width: 100%;
+        height: 180px;
+        .drag-drop {
+
+            &__label {
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                border-radius: 8px;
+                background: #aaa;
+                cursor: pointer;
+
+                &.itemdrop {
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        z-index: 1;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba($color: white, $alpha: 0.7) url('./images/file.png') no-repeat center center / 50px auto;
+                    }
+                }
+
+                &.active {
+                    border: 2px solid black;
+                    background: #ddd;
+                }
+            }
+
+            &__input {
+                display: none;
+            }
+        }
+    }
 }
 
 .blind {
     font-size: 0;
 }
 
+.hidden {
+    display: none;
+}

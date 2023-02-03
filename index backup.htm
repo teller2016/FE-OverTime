@@ -14,73 +14,176 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.5/xlsx.full.min.js"></script>
 
     <script src="./js/overTime.js"></script>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body class="ot">
-    <section class="container pt-5">
-        <div class="row">
-            <div class="col">
-                <h4>날짜 설정</h4>
-                <div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="yearSelect">년도</label>
-                        </div>
-                        <select name="year" class="custom-select js__year" id="yearSelect">
+    <!-- <header class="ot__header">
+        대충 OT 대장 작성해주는 시스템 이름
+    </header> -->
+
+    <section class="ot__content">
+        <h2 class="blind">OT대장 작성영역</h2>
+        
+        <!-- 기본 설정 옵션 -->
+        <div class="ot__default">
+            <p class="default__title">기본 설정</p>
+
+            <!-- 해당 년,월 설정 -->
+            <dl class="default__list">
+                <dt class="default__name">
+                    년도
+                </dt>
+
+                <dd class="default__input">
+                    <div class="default__input__wrapper">
+                        <select name="year" class="js__year">
                             <option value="22">22</option>
                             <option value="23">23</option>
                             <option value="24">24</option>
                             <option value="25">25</option>
                             <option value="26">26</option>
                         </select>
+                        <span class="default__input__name">년</span>
                     </div>
-    
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text" for="startTimeSelect">출근시간</label>
-                        </div>
-                        <select name="start-time" class="custom-select" id="startTimeSelect">
-                            <option value="18">9</option>
-                            <option value="18.5" selected>9:30</option>
-                            <option value="19">10:00</option>
+
+                    <!-- <div class="default__input__wrapper">
+                        <select name="month">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
                         </select>
-                    </div>
-                </div>
-            </div>
-            <div class="col border-left border-secondary">
-                <h4>일지 등록</h4>
+                        <span class="default__input__name">월</span>
+                    </div> -->
+                </dd>
+            </dl>
 
-                <div>
-                    <p class="text-danger mb-2">해당 월의 일지 excel파일을 불러와 주세요.</p>
+            <!-- 출근 시간 설정 -->
+            <dl class="default__list">
+                <dt class="default__name">
+                    출근시간
+                </dt>
 
-                    <div class="input-group mb-3">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input js__work__excel" id="csv-file">
-                            <label id="csv-file-label" class="custom-file-label" for="csv-file">파일선택</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col border-left border-secondary">
-                <h4>석식 등록</h4>
-
-                <div class="js__dinner-form d-flex align-items-center">
-                    <label class="m-0">
-                        <input type="date" name="dinner-date">
+                <dd class="default__input default__input--radio">
+                    <label>
+                        <input type="radio" value="18" name="start-time" checked>
+                        <span>9</span>
                     </label>
 
-                    <label class="m-0 ml-1">
-                        <input type="text" name="dinner-name" placeholder="ex.마이쥬스">
+                    <label>
+                        <input type="radio" value="18.5" name="start-time">
+                        <span>9:30</span>
                     </label>
 
-                    <button type="button" class="btn btn-outline-primary ml-1 h-auto js__add-dinner">추가</button>
+                    <label>
+                        <input type="radio" value="19" name="start-time">
+                        <span>10:00</span>
+                    </label>
+                </dd>
+            </dl>
+        </div>
+
+        <!-- OT 내역 작성 영역 -->
+        <div class="ot__write">
+            <!-- WORK -->
+            <section class="write__content write__day">
+                <header class="write__header">
+                    <h2 class="write__title">일한 시간 (EXCEL 파일 불러오기)</h2>
+                </header>
+
+                <div class="write__excel">
+                    <p class="write__excel__guide">해당 월의 일지 excel파일을 불러와 주세요.</p>
+                    <label>
+                        <input type="file" id="csv-file" class="js__work__excel" />
+                    </label>
                 </div>
 
-                <div class="border border-secondary mt-3">
-                    <h5 class="">석식 결과</h5>
 
-                    <table class="table table-sm table-striped js__dinner-table">
+                <!-- <form class="js__work-form">
+                    <div class="write__input">
+                        <label>
+                            <input type="date" name="work-date">
+                        </label>
+    
+                        <select name="work-time">
+                            <option value="18">18:00</option>
+                            <option value="18.5">18:30</option>
+                            <option value="19">19:00</option>
+                            <option value="19.5">19:30</option>
+                            <option value="20">20:00</option>
+                            <option value="20.5">20:30</option>
+                            <option value="21">21:00</option>
+                            <option value="21.5">21:30</option>
+                            <option value="22">22:00</option>
+                            <option value="22.5">22:30</option>
+                            <option value="23">23:00</option>
+                            <option value="23.5">23:30</option>
+                            <option value="24">24:00</option>
+                        </select>
+
+                        <button type="button" class="js__add-work">추가</button>
+                    </div>
+                </form>
+
+                <div class="write__result">
+                    <h3 class="write__result__title">일 결과</h3>
+
+                    <table class="result__table js__work-table">
+                        <colgroup>
+                            <col width="100">
+                            <col width="200">
+                            <col width="160">
+                        </colgroup>
+
+                        <tr class="result__table__row">
+                            <th class="result__table__head">No.</th>
+                            <th class="result__table__head">일시</th>
+                            <th class="result__table__head">종료시간</th>
+                        </tr>
+
+                        <script class="js__template__work" type="text/template">
+                            <tr class="result__table__row js__work-table__row">
+                                <td class="result__table__data">{[workNumber]}</td>
+                                <td class="result__table__data">{[workDate]}</td>
+                                <td class="result__table__data">{[workEndTime]}</td>
+                            </tr>
+                        </script>
+
+                    </table>
+                </div> -->
+            </section>
+
+            <!-- DINNER -->
+            <section class="write__content write__dinner">
+                <header class="write__header">
+                    <h2 class="write__title">석식</h2>
+                </header>
+
+                <form class="js__dinner-form">
+                    <div class="write__input">
+                        <label>
+                            <input type="date" name="dinner-date">
+                        </label>
+                        
+                        <label>
+                            <input type="text" name="dinner-name" placeholder="ex.마이쥬스">
+                        </label>
+
+                        <button type="button" class="js__add-dinner">추가</button>
+                    </div>
+                </form>
+
+                <div class="write__result">
+                    <h3 class="write__result__title">석식 결과</h3>
+
+                    <table class="result__table js__dinner-table">
                         <colgroup>
                             <col width="100">
                             <col width="200">
@@ -88,27 +191,19 @@
                         </colgroup>
 
                         <script class="js__template__dinner" type="text/template">
-                            <tr class="js__dinner-table__row">
-                                <td class="">{[dinnerNumber]}</td>
-                                <td class="">{[dinnerDate]}</td>
-                                <td class="">{[dinnerName]}</td>
+                            <tr class="result__table__row js__dinner-table__row">
+                                <td class="result__table__data">{[dinnerNumber]}</td>
+                                <td class="result__table__data">{[dinnerDate]}</td>
+                                <td class="result__table__data">{[dinnerName]}</td>
                             </tr>
                         </script>
 
                     </table>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="ot__content mt-5">
-        <h2 class="blind">OT대장 작성영역</h2>
-
-        <!-- OT 내역 작성 영역 -->
-        <div class="ot__write">
+            </section>
 
             <div class="write__done">
-                <button type="button" class="btn-lg btn-outline-dark h-auto js__combine-data">통합결과조회</button>
+                <button type="button" class="js__combine-data">통합결과조회</button>
             </div>
         </div>
 
@@ -329,7 +424,7 @@
             <div class="js__result-html"></div>
 
             <div class="result__html">
-                <button type="button" class="btn btn-dark h-auto mb-2 js__copy">전체 HTML 복사</button>
+                <button type="button" class="js__copy">전체 HTML 복사</button>
                 <!-- 전체 HTML text -->
                 <div class="js__total-result__html"></div>
             </div>
@@ -342,7 +437,7 @@
             <div class="js__result-table"></div>
 
             <div class="result__html">
-                <button type="button" class="btn btn-dark h-auto mb-2 js__copy-row">tr HTML 복사</button>
+                <button type="button" class="js__copy-row">tr HTML 복사</button>
                 <!-- tr HTML text -->
                 <div class="js__result__html"></div>
             </div>

@@ -359,7 +359,8 @@ const resultData = () => {
         if (!event.target) return;
 
         // 출근 시간에 따른 야근 시작 시간
-        const workStartTime = Number($("input[name='start-time']:checked").val());
+        // const workStartTime = Number($("input[name='start-time']:checked").val()); radio 사용
+        const workStartTime = Number($("[name='start-time']").val());
         const year = $("select[name='year']").val();
         
         $.each(workResultData, (day, workData) => {
@@ -412,10 +413,16 @@ const overTimeInit = () => {
     copyTotalResultHtml();
 
     document.addEventListener('keydown', function(event) {
-        if (event.keyCode === 13) {
-            event.preventDefault();
-        };
+            if (event.keyCode === 13) {
+                event.preventDefault();
+            };
         }, true);
+
+    $(document).on('change', '#csv-file', (event) => {
+        const $input = $(event.target);
+        const fileName = $input.val().split('\\').pop();
+        $('#csv-file-label').text(fileName);
+    });
 }
 
 overTimeInit();

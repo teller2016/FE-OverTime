@@ -20,6 +20,7 @@
 <body class="ot">
     <section class="container pt-5">
         <div class="row">
+            <!-- 날짜 설정 -->
             <div class="col">
                 <h4>날짜 설정</h4>
                 <div>
@@ -48,9 +49,20 @@
                     </div>
                 </div>
             </div>
-            <div class="col border-left border-secondary">
-                <h4>일지 등록</h4>
 
+            <!-- 일지 등록 -->
+            <div class="col border-left border-secondary">
+                <h4>
+                    일지 등록
+                    <div class="ot__guide">
+                        <span class="guide__icon">?</span>
+                        <div class="guide__wrapper">
+                            <figure class="guide__img">
+                                <img src="./scss/images/excel_download_guide.png" alt="">
+                            </figure>
+                        </div>
+                    </div>
+                </h4>
                 <div>
                     <p class="text-danger mb-2">해당 월의 일지 excel파일을 불러와 주세요.</p>
 
@@ -67,6 +79,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- 석식 등록 -->
             <div class="col border-left border-secondary">
                 <h4>석식 등록</h4>
 
@@ -326,9 +340,6 @@
                 </script>
 
             </table>
-
-
-
             
             <!-- 전체 html 결과 -->
             <div class="js__result-html"></div>

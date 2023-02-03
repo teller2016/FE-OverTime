@@ -226,6 +226,40 @@ input[type=radio] + span {
 .ot__drag-drop .drag-drop__input {
   display: none;
 }
+.ot__guide {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+.ot__guide:hover .guide__wrapper {
+  display: block;
+}
+.ot__guide .guide__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 23px;
+  height: 23px;
+  border: 2px solid orange;
+  color: orange;
+  font-size: 20px;
+  border-radius: 50%;
+}
+.ot__guide .guide__wrapper {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  padding: 8px;
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  font-size: 0;
+}
+.ot__guide .guide__img {
+  margin: 0;
+}
 
 .blind {
   font-size: 0;
